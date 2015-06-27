@@ -193,6 +193,7 @@ Whenever the straightforward `model` updates or the array `operations` aren't en
 Consider the case where you have a timeline thread that can be watched for notifications. When the button gets clicked the action changes from Watch to Unwatch, or viceversa. As you can see here, the changes to the `viewModel` are entirely conducted by `skyrocket`, and your view controller can focus on re-rendering the relevant portion of the view. Effectively, this is one-way data-binding from your model to your view.
 
 ```js
+var taunus = require('taunus');
 var skyrocket = require('skyrocket');
 
 module.exports = function timelineController (viewModel, container, route) {
