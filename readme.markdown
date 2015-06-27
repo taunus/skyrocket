@@ -28,7 +28,7 @@ There's a little configuration to be done around `skyrocket` mostly so that it s
 We'll need:
 
 - A server-side WebSocket endpoint to listen for events
-- A server-side WebSocket endpoint to stop listening for an events
+- A server-side WebSocket endpoint to stop listening for events
 - A client-side WebSocket endpoint to handle any updates
 
 Here's both of the server-side endpoints that let a user join and leave rooms at will. In the real world you should probably verify the user is authorized to join a given room. This is entirely left up to you. You are also completely free when it comes to the endpoints you want to use.
