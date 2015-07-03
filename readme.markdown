@@ -54,7 +54,7 @@ On the client-side, you'll need to tell `skyrocket` to use these endpoints to jo
 ```js
 var client = require('socket.io-client');
 var io = client('');
-var gradual = require('gradual');
+var taunus = require('taunus');
 var skyrocket = require('skyrocket');
 
 skyrocket.configure({
@@ -69,7 +69,7 @@ function revolve (type, rooms) {
 Lastly, you'll want to set up `skyrocket.react` handlers whenever a [gradual][1] response comes in, and also whenever a realtime payload is received. Again, the `/skyrocket/update` endpoint could also be changed to some other route of your choosing.
 
 ```js
-gradual.on('data', skyrocket.react);
+taunus.gradual.on('data', skyrocket.react);
 io.on('/skyrocket/update', skyrocket.react);
 ```
 
@@ -228,6 +228,26 @@ The `reactor` object contains all sorts of relevant pieces.
 - `applyChanges` is the method with which updates to the `viewModel` will be applied
 - `reaction` is the method that will get called after changes get applied
 - `destroy` should be invoked whenever the `reactor` is deemed no longer necessary
+
+## `skyrocket.op(name, handler)`
+
+Add your own custom operations in the client-side. As an example, the operation below will replace the `target` value with the result of adding `operation.value` to it.
+
+```js
+skyrocket.op('add', function (target, operation) {
+  return target + operation.value;
+});
+```
+
+So with a model like `{ foo: 1 }`, an operation like `{ op: 'add', concern: 'foo', value: 2 }` will result in a model like `{ foo: 3 }`.
+
+If the operation handler doesn't return a value, the `target` won't be replaced. Note that replacing a `target` is only feasible if a `concern` is provided. You can always use `target` by reference to change child properties in it. The example below would have a similar effect as long as you specified `prop: 'foo'` and didn't provide a concern.
+
+```js
+skyrocket.op('add-child', function (target, operation) {
+  target[operation.prop] += operation.value;
+});
+```
 
 ## `skyrocket.scope(container, viewModel)`
 
