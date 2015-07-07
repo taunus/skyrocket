@@ -253,7 +253,7 @@ skyrocket.op('add-child', function (target, operation) {
 
 Typically invoked once per view controller, this method returns a `rocket` object that's able to listen in on rooms.
 
-#### `rocket.on(room, options?, reaction)`
+#### `rocket.on(room, options?, reaction?)`
 
 Whenever `room` gets an update, applies changes to `viewModel` and fires `reaction(update)`. The `options` object may be omitted. Options include:
 

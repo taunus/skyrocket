@@ -1,3 +1,7 @@
+# 1.2.2 Faceless
+
+- Made `reaction` optional
+
 # 1.2.1 Gradually Easier
 
 - Connects to `taunus.gradual` automatically

@@ -50,7 +50,7 @@ function scope (container, viewModel) {
       viewModel: viewModel,
       room: room,
       applyChanges: o.applyChanges || applyChanges,
-      reaction: reaction,
+      reaction: reaction || noop,
       destroy: destroy
     };
     reactors.push(reactor);
@@ -170,6 +170,8 @@ function applyOperations (viewModel, operations) {
     }
   }
 }
+
+function noop () {}
 
 function pushOp (target, operation) {
   if (Array.isArray(target)) {
