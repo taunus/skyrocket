@@ -24,6 +24,10 @@ function op (name, fn) {
   operationHandlers[name] = fn;
 }
 
+function joining (reactor) {
+  state.taunus.track(reactor.container, reactor, { implodes: true });
+}
+
 function scope (container, viewModel) {
   return assign({ on: on }, skyrocket);
   function on (room, options, reaction) {
@@ -42,7 +46,7 @@ function scope (container, viewModel) {
     };
     reactors.push(reactor);
     enqueue('join', room);
-    state.joining(reactor);
+    joining(reactor);
     return reactor;
 
     function destroy () {
@@ -51,8 +55,8 @@ function scope (container, viewModel) {
     }
 
     function enqueue (method, room) {
-      var joining = method === 'join';
-      if (joining) {
+      var joins = method === 'join';
+      if (joins) {
         move(queue.leave, queue.join);
       } else {
         move(queue.join, queue.leave);
