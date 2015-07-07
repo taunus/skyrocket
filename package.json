@@ -1,6 +1,6 @@
 {
   "name": "skyrocket",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Seamlessly upgrade Taunus applications to a realtime festivus",
   "main": "skyrocket.js",
   "repository": {
