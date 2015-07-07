@@ -4,7 +4,7 @@ var assign = require('assignment');
 var state = require('./lib/state');
 var reactors = [];
 var skyrocket = {
-  configure: state.configure,
+  configure: configure,
   op: op,
   applyChanges: applyChanges,
   scope: scope,
@@ -19,6 +19,15 @@ var operationHandlers = {
   remove: manipOp,
   edit: manipOp
 };
+var bound;
+
+function configure (options) {
+  state.configure(options);
+  if (!bound) {
+    bound = true;
+    state.taunus.gradual.on('data', react);
+  }
+}
 
 function op (name, fn) {
   operationHandlers[name] = fn;

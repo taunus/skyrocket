@@ -1,3 +1,7 @@
+# 1.2.1 Gradually Easier
+
+- Connects to `taunus.gradual` automatically
+
 # 1.2.0 Dow Chemical
 
 - Demand `taunus` option instead of `joining`
